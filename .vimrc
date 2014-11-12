@@ -11,6 +11,7 @@ call vundle#begin()
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
+Plugin 'klen/python-mode'
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
@@ -80,8 +81,8 @@ set autoread            " re-read an open file that has changed outside vim
 " set ttimeout
 " set ttimeoutlen=10      " wait 10ms for a keycode to complete
 "
-" set splitbelow          " always make new splits below, not above
-" set splitright          " always make new splits on the right, not on the
+set splitbelow          " always make new splits below, not above
+set splitright          " always make new splits on the right, not on the
 " left
 "
 " set spelllang=en_gb     " set spelling to use British English
@@ -90,4 +91,22 @@ set autoread            " re-read an open file that has changed outside vim
 " set dictionary=/usr/share/dict/words
 " set spellfile=~/.vim/custom-dictionary.utf-8.add
 "
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+"
+" " Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+let mapleader = ","
 " " }}}
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.db
+" The Silver Searcher
+"if executable('ag')
+"   " Use ag over grep
+"    set grepprg=ag\ --nogroup\ --nocolor
+"
+"       " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+"    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+"    let g:ctrlp_use_caching = 0
+"endif
