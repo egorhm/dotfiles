@@ -1,13 +1,11 @@
 [
     {
-        "clean": [
-            "~",
-            "~/.vim/syntax"
-        ]
+        "clean": []
     },
     {
         "link": {
-            "~/.vimrc"                   : ".vimrc",
+            "~/.vimrc"                  : ".vimrc",
+            "~/.vim/colors/hybrid.vim"  : ".vim/colors/hybrid.vim"
         }
     },
     {
