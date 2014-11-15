@@ -5,7 +5,7 @@
     {
         "link": {
             "~/.vimrc"                  : ".vimrc",
-            "~/.vim/colors/hybrid.vim"  : ".vim/colors/hybrid.vim"
+            "~/.vim"  : ".vim"
         }
     },
     {
