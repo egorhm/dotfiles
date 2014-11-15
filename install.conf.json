@@ -4,8 +4,8 @@
     },
     {
         "link": {
-            "~/.vimrc"                  : ".vimrc",
-            "~/.vim"  : ".vim"
+            "~/.vimrc"                  : "vimrc",
+            "~/.vim"  : "vim"
         }
     },
     {
