@@ -14,12 +14,12 @@
   who = shortlog -s --
 
 [user]
-	name = Egor Hamaliy
-	email = egor.hamaliy@gmail.com
+  name = Egor Hamaliy
+  email = egor.hamaliy@gmail.com
 [color]
   diff = auto
   status = auto
   branch = auto
   ui = auto
 [push]
-	default = current
+  default = current
