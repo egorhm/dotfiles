@@ -12,7 +12,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'klen/python-mode'
-Plugin 'tpope/vim-fugitive'
+Plugin 'majutsushi/tagbar'
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
@@ -67,6 +67,13 @@ set laststatus=2
 let mapleader = ","
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.db
+
+" Tagbar ------------------------------
+" toggle tagbar display
+map <F4> :TagbarToggle<CR>
+" autofocus on tagbar open
+let g:tagbar_autofocus = 1
+
 
 " NERDTree -----------------------------
 
