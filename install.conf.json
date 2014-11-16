@@ -1,11 +1,15 @@
 [
     {
-        "clean": []
+        "clean": [
+            "~",
+            "~/.vim/"
+        ]
     },
     {
         "link": {
-            "~/.vimrc"                  : "vimrc",
-            "~/.vim"  : "vim"
+            "~/.vimrc"       : "vimrc",
+            "~/.vim/colors"  : "vim/colors",
+            "~/.vim/bundle"  : "vim/bundle"
         }
     },
     {
