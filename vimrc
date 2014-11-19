@@ -13,6 +13,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'klen/python-mode'
 Plugin 'majutsushi/tagbar'
+Plugin 'jeetsukumaran/vim-buffergator'
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
