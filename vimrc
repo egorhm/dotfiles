@@ -14,6 +14,8 @@ Plugin 'bling/vim-airline'
 Plugin 'klen/python-mode'
 Plugin 'majutsushi/tagbar'
 Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
@@ -84,3 +86,7 @@ map <F3> :NERDTreeToggle<CR>
 nmap ,t :NERDTreeFind<CR>
 " don;t show these file types
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
+
+" Markdown ----------------------------
+"
+let g:vim_markdown_folding_disabled = 1
