@@ -16,6 +16,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'ervandew/supertab'
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
@@ -90,3 +92,14 @@ let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 " Markdown ----------------------------
 "
 let g:vim_markdown_folding_disabled = 1
+
+" Pymode config
+let g:pymode_rope = 0
+" Don't autofold code
+let g:pymode_folding = 0
+
+" Jedi configs
+let g:jedi#completions_command = "<C-N>"
+
+" Use <leader>l to toggle display of whitespace
+nmap <leader>l :set list!<CR>
