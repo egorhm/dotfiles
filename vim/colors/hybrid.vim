@@ -79,7 +79,7 @@ let colors_name = "hybrid"
 if has("gui_running")
   let s:vmode      = "gui"
   let s:background = "#1d1f21"
-  let s:foreground = "#c5c8c6"
+  let s:foreground = "#e5e5e5"
   let s:selection  = "#373b41"
   let s:line       = "#282a2e"
   let s:comment    = "#707880"
@@ -127,7 +127,7 @@ else
     let s:purple     = "13"   " LightMagenta
   elseif g:hybrid_use_iTerm_colors == 1
     let s:background = "NONE"
-    let s:foreground = "7"
+    let s:foreground = "10"
     let s:selection  = "0"
     let s:line       = "0"
     let s:comment    = "15"
@@ -139,7 +139,7 @@ else
     let s:blue       = "4"
     let s:purple     = "5"
   else
-    let s:foreground = "250"
+    let s:foreground = "252"
     let s:selection  = "237"
     let s:line       = "235"
     let s:comment    = "243"

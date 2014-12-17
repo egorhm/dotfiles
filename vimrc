@@ -1,4 +1,5 @@
 color hybrid
+
 set guifont=Monaco:h12
 
 set nocompatible              " be iMproved, required
