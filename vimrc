@@ -1,5 +1,3 @@
-color hybrid
-
 set guifont=Monaco:h12
 
 set nocompatible              " be iMproved, required
@@ -19,6 +17,8 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'ervandew/supertab'
+Plugin 'ivanov/vim-ipython'
+Plugin 'flazz/vim-colorschemes'
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
@@ -68,6 +68,8 @@ set splitright          " always make new splits on the right, not on the
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_theme = 'bubblegum'
+
 set laststatus=2
 
 let mapleader = ","
@@ -104,3 +106,19 @@ let g:jedi#completions_command = "<C-N>"
 
 " Use <leader>l to toggle display of whitespace
 nmap <leader>l :set list!<CR>
+
+"""" Display
+if has("gui_running")
+    colorscheme codeschool
+    " Remove menu bar
+    set guioptions-=m
+
+    " Remove toolbar
+    set guioptions-=T
+else
+    if &t_Co >= 256
+        colorscheme mustang
+    else
+        colorscheme wargrey
+    endif
+endif
