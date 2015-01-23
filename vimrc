@@ -109,7 +109,7 @@ nmap <leader>l :set list!<CR>
 
 """" Display
 if has("gui_running")
-    colorscheme codeschool
+    colorscheme github
     " Remove menu bar
     set guioptions-=m
 
@@ -117,8 +117,8 @@ if has("gui_running")
     set guioptions-=T
 else
     if &t_Co >= 256
-        colorscheme mustang
+        colorscheme github
     else
-        colorscheme wargrey
+        colorscheme github
     endif
 endif
