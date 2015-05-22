@@ -52,3 +52,10 @@
 (require 'python-mode)
 ;; try to automagically figure out indentation
 (setq py-smart-indentation t)
+
+;;(require 'gandalf-theme)
+;;(require 'color-theme)
+;;(set-background-color "bharadwaj")
+(require 'color-theme)
+(color-theme-initialize)
+(color-theme-bharadwaj)
