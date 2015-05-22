@@ -10,7 +10,9 @@
             "~/.vimrc"       : "vimrc",
             "~/.vim/colors"  : "vim/colors",
             "~/.vim/bundle"  : "vim/bundle",
-            "~/.gitconfig"   : "gitconfig"
+            "~/.gitconfig"   : "gitconfig",
+            "~/.tmux.config" : "tmux.config",
+            "~/.emacs"       : "emacs"
         }
     },
     {
