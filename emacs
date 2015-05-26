@@ -44,10 +44,6 @@
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 (setq neo-theme 'ascii)
-;;(require 'dirtree)
-;;(global-set-key [f8] '
-;;(require 'direx)
-;;(global-set-key (kbd "C-x C-j") 'direx:jump-to-directory)
 
 (require 'auto-complete)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
@@ -60,8 +56,8 @@
 (setq py-smart-indentation t)
 
 (require 'gandalf-theme)
-;;(require 'color-theme)
-;;(set-background-color "bharadwaj")
-;;(require 'color-theme)
-;;(color-theme-initialize)
-;;(color-theme-xemacs)
+
+(autoload 'jedi:setup "jedi" nil t)
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
+(setq jedi:setup-keys t)
