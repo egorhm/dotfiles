@@ -1,124 +1,284 @@
-set guifont=Monaco:h12
-
-set nocompatible              " be iMproved, required
+"set guifont=DejaVu\ Sans\ Mono\ 9
+"set guifont=Source\ Code\ Pro\ 10
+set guifont=Ubuntu\ Mono\ 11
+set nocompatible              " be iMproved, required"
 filetype off                  " required
+filetype plugin indent on     " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin('~/.vim/plugins')
+call plug#begin('~/.vim/plugged')
 
-Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
-Plugin 'bling/vim-airline'
-Plugin 'klen/python-mode'
-Plugin 'majutsushi/tagbar'
-Plugin 'jeetsukumaran/vim-buffergator'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'ervandew/supertab'
-Plugin 'ivanov/vim-ipython'
-Plugin 'flazz/vim-colorschemes'
+Plug 'tpope/vim-fugitive'
+Plug 'ervandew/supertab'
+Plug 'scrooloose/nerdtree'
+Plug 'easymotion/vim-easymotion'
+Plug 'scrooloose/nerdcommenter'
+Plug 'airblade/vim-gitgutter'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'majutsushi/tagbar'
+Plug 'mileszs/ack.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'davidhalter/jedi-vim'
+Plug 'tpope/vim-surround'
+Plug 'egorhm/vim-hybrid'
+Plug 'moll/vim-bbye'
+Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
+" Initialize plugin system
+call plug#end()
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+source $VIMRUNTIME/mswin.vim
+behave mswin
 
-call vundle#end()            " required
-filetype plugin indent on    " required
+set runtimepath^=~/.vim/bundle
+"----------------------------------------------------
+"Settings
+"----------------------------------------------------
+set noerrorbells                "No beep
+syntax on
+set number                      " Show line numbers
+set backspace=indent,eol,start  " Makes backspace key more powerful.
+set showcmd                     " Show me what I'm typing
+set showmode                    " Show current mode.
 
-set modelines=0         " explicity turn off vim modelines (for security)
-set encoding=utf-8      " use utf-8 character set by default
-syntax on               " turn on syntax highlighting
-set synmaxcol=800       " don't highlight lines longer than 800 characters
-"
-set ttyfast             " use a fast terminal connection
-set visualbell          " use a visual bell instead of annoying beep
-set title               " update the terminal title with file name
-"
-set number              " show absolute line number on current line
-set cursorline          " highlight the line the cursor is on
-set ruler               " show the cursor position all the time
-set showcmd             " display incomplete commands at the bottom
-set scrolloff=5         " keep 5 lines visible around cursor (if possible)
-set matchtime=3         " highlight matching parens for 3 seconds
-"
-set textwidth=100       " set maximum line width to 80 characters
-set colorcolumn=+1      " draw a right margin at the end of textwidth
-set linebreak           " use soft-wrapping on long lines
-"
-set tabstop=4           " set hard tabstop size to 4
-set softtabstop=4       " set soft tabstop size to 4
-set shiftwidth=4        " set size of an 'indent' to 4
-set shiftround          " when shifting, always use a multiple of shiftwidth
-set autoindent          " automatically indent new lines
-set expandtab           " use spaces instead of <tab>s
-set smarttab            " make adding/removing tabs (spaces) smarter
-"
-set incsearch           " search incrementally as you type
-set hlsearch            " highlight search matches
-set ignorecase          " use case-insensitive search
-set smartcase           " automatically decide to search with case or not
-"
-set autoread            " re-read an open file that has changed outside vim
-"
-set splitbelow          " always make new splits below, not above
-set splitright          " always make new splits on the right, not on the
-"
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_theme = 'bubblegum'
-
+set noswapfile                  " Don't use swapfile
+set nobackup                    " Don't create annoying backup files
+set nowritebackup
+set splitright                  " Split vertical windows right to the current windows
+set splitbelow                  " Split horizontal windows below to the current windows
+set encoding=utf-8              " Set default encoding to UTF-8
+set autowrite                   " Automatically save before :next, :make etc.
+set autoread                    " Automatically reread changed files without asking me anything
 set laststatus=2
+set hidden
+
+set noshowmatch                 " Do not show matching brackets by flickering
+set noshowmode                  " We show the mode with airline or lightline
+set incsearch                   " Shows the match while typing
+set hlsearch                    " Highlight found searches
+set ignorecase                  " Search case insensitive...
+set smartcase
+set ttyfast
+set lazyredraw                  " Wait to redraw "
+
+set textwidth=80                " set maximum line width to 80 characters
+
+set nocursorcolumn
+set cursorline
+set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
+set linespace=2
+
+" dont save .netrwhist history
+let g:netrw_dirhistmax=0
+
+set ruler                       " Show the cursor position all the time
+au FocusLost * :wa              " Set vim to save the file on focus out.
+
+" Just go out in insert mode
+imap jk <ESC>l
+
+let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+set background=dark
+if has("gui_running")
+   colorscheme hybrid
+   set guioptions-=m
+   set guioptions-=r
+   set guioptions-=L
+   set guioptions-=T
+else
+   if $COLORTERM == 'gnome-terminal'
+     set t_Co=256
+     colorscheme hybrid
+   endif
+endif
+
+" Buffer prev/next
+nnoremap <C-x> :bnext<CR>
+nnoremap <C-z> :bprev<CR>
+
+" Better split switching
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
 let mapleader = ","
+let g:mapleader = ","
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.db
+" Close quickfix easily
+nnoremap <leader>a :cclose<CR>
 
-" Tagbar ------------------------------
-" toggle tagbar display
-map <F4> :TagbarToggle<CR>
-" autofocus on tagbar open
-let g:tagbar_autofocus = 1
+" Remove search highlight
+nnoremap <leader><space> :nohlsearch<CR>
 
+" Tab completion
+" will insert tab at beginning of line,
+" will use completion if not at beginning
+set wildmode=list:longest,list:full
 
-" NERDTree -----------------------------
+" Display extra whitespace
+set list listchars=tab:»·,trail:·,nbsp:·
 
-" toggle nerdtree display
-map <F3> :NERDTreeToggle<CR>
-" open nerdtree with the current file selected
-nmap ,t :NERDTreeFind<CR>
-" don;t show these file types
-let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
+" Use one space, not two, after punctuation.
+set nojoinspaces
 
-" Markdown ----------------------------
-"
-let g:vim_markdown_folding_disabled = 1
+" Switch between the last two files
+nnoremap <Leader><Leader> <c-^>
 
-" Pymode config
-let g:pymode_rope = 0
-" Don't autofold code
-let g:pymode_folding = 0
+" Map save current buffer
+nmap <leader>w :w!<cr>
 
-" Jedi configs
-let g:jedi#completions_command = "<C-N>"
+set autoindent
+set complete-=i
+set showmatch
+set smarttab
+set completeopt-=preview
 
-" Use <leader>l to toggle display of whitespace
-nmap <leader>l :set list!<CR>
+au FileType python map <silent> <leader>b oimport pdb; pdb.set_trace() #XXX:Breakpoint<esc>
+au FileType python map <silent> <leader>B Oimport pdb; pdb.set_trace() #XXX:Breakpoint<esc>
 
-"""" Display
-if has("gui_running")
-    colorscheme github
-    " Remove menu bar
-    set guioptions-=m
+"------------------------------------------------------------
+"NerdTree
+"------------------------------------------------------------
+nmap <F2> :NERDTreeToggle<CR>
+noremap <Leader>f :NERDTreeFind<cr>
 
-    " Remove toolbar
-    set guioptions-=T
-else
-    if &t_Co >= 256
-        colorscheme github
-    else
-        colorscheme github
-    endif
+let NERDTreeShowHidden=1
+let NERDTreeWinSize = 30
+
+let NERDTreeIgnore=['\~$', '\.AppleDouble$', '\.beam$', 'build$',
+\'dist$', '\.DS_Store$', '\.egg$', '\.egg-info$', '\.la$',
+\'\.lo$', '\.\~lock.*#$', '\.mo$', '\.o$', '\.pt.cache$',
+\'\.pyc$', '\.pyo$', '__pycache__$', '\.Python$', '\..*.rej$',
+\'\.rej$', '\.ropeproject$', '\.svn$', '\.tags$' ]
+
+" Close nerdtree and vim on close file
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+"------------------------------------------------------------
+"EasyMotion
+"-----------------------------------------------------------
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap s <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_max_height = 10             " maxiumum height of match window
+let g:ctrlp_switch_buffer = 'et'        " jump to a file if it's open already
+let g:ctrlp_mruf_max=450                " number of recently opened files
+let g:ctrlp_max_files=0                 " do not limit the number of searchable files
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+
+"Tagbar settings
+"------------------------------------------------------------
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+nmap <F3> :TagbarToggle<CR>
+
+set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.spl                            " compiled spelling word lists
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.luac                           " Lua byte code
+set wildignore+=migrations                       " Django migrations
+set wildignore+=go/pkg                           " Go static files
+set wildignore+=go/bin                           " Go bin files
+set wildignore+=go/bin-vagrant                   " Go bin-vagrant files
+set wildignore+=*.pyc                            " Python byte code
+set wildignore+=*.orig                           " Merge resolution files
+
+if executable('ag')
+ "let g:ackprg = 'ag'
 endif
+
+"--------------------------------------------------------------
+"vim-airline settings
+"--------------------------------------------------------------
+let g:airline_detect_iminsert = 1
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_theme = 'sol'
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#virtualenv#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+
+let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_exclude_preview = 0
+
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+
+"----------------------------------------------------------------
+"CtrlP settings
+"----------------------------------------------------------------
+let g:ctrlp_by_filename = 1
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_max_height = 10              " maxiumum height of match window
+let g:ctrlp_switch_buffer = 'et'         " jump to a file if it's open already
+let g:ctrlp_mruf_max=450                 " number of recently opened files
+let g:ctrlp_max_files=0                  " do not limit the number of searchable files
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+
+"let g:pymode_options = 0
+"let g:pymode_lint_write = 0
+"let g:pymode_folding = 0
+"let g:pymode_rope = 1
+"let g:pymode_virtualenv = 1
+"let g:pymode_breakpoint = 1
+"let g:pymode_breakpoint_bind = '<leader>b'
+
+let g:jedi#show_call_signatures = "1"
+set updatetime=500
+
+"---------------------------------------------------------------
+"Fugitive
+"---------------------------------------------------------------
+nnoremap <leader>gb :Gblame<cr>
+nnoremap <leader>gc :Gcommit<cr>
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gl :Glog -4<cr>
+nnoremap <leader>gp :Git push<cr>
+nnoremap <leader>gs :Git status -sb<cr>
+
+"---------------------------------------------------------------
+"GitGutter settings
+"---------------------------------------------------------------
+set signcolumn=yes
+
+
+let g:python_highlight_all = 1
+
+"---------------------------------------------------------------
+"Bbye settings
+"---------------------------------------------------------------
+:nnoremap <Leader>q :Bdelete<CR>
+
